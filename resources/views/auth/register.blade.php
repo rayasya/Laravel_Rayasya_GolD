@@ -55,7 +55,7 @@
                                             <option value="User">User</option>
                                         </select>
                                     </div>
-                                    @error('password')
+                                    @error('role')
                                         <div class="alert alert-danger alert-dismissible" role="alert">
                                             <div>{{ $message }}</div>
                                             <button type="button" class="btn-close" data-bs-dismiss="alert"

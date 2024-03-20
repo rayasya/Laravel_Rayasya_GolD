@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->enum('prodi_mhs', ['TIF', 'MIF', 'TKK']);
             $table->text('alamat_mhs');
             $table->string('no_telp');
-            $table->date('ttl');
+            $table->date('tanggal_lahir');
             $table->timestamps();
         });
     }

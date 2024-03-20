@@ -18,7 +18,7 @@
                     <span class="hide-menu">Home</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="dashboard" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('dashboard') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -30,7 +30,8 @@
                     <span class="hide-menu">Data</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="mahasiswa" aria-expanded="false">
+                    <a class="sidebar-link {{ Request()->segment(1) == 'mahasiswa' ? 'active' : '' }}"
+                        href="{{ route('mahasiswa') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-list"></i>
                         </span>

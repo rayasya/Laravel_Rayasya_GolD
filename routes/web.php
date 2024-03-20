@@ -16,5 +16,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
+    Route::get('mahasiswa/add', [MahasiswaController::class, 'create'])->name('mahasiswa.add');
+    Route::post('mahasiswa/store', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
     Route::get('data', [DataController::class, 'index']);
 });

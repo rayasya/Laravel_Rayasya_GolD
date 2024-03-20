@@ -19,7 +19,7 @@ class MahasiswaSeeder extends Seeder
             'prodi_mhs' => 'TIF',
             'alamat_mhs' => 'Jl. Jalan',
             'no_telp' => '081234567890',
-            'ttl' => '2003-05-11',
+            'tanggal_lahir' => '2003-05-11',
             'created_at' => now()
         ]);
     }
