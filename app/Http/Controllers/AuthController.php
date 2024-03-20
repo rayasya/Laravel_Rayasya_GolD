@@ -13,16 +13,19 @@ class AuthController extends Controller
 {
     public function indexLogin()
     {
+        if (Auth::check()) {
+            return redirect("dashboard");
+        }
         return view("auth.login");
     }
 
     public function authLogin(Request $req)
     {
         $req->validate([
-            "username" => "required",
+            "email" => "required",
             "password" => "required",
         ]);
-        $credential = $req->only(["username", "password"]);
+        $credential = $req->only(["email", "password"]);
         if (Auth::attempt($credential)) {
             return redirect()->intended('dashboard')->withSuccess("Berhasil Masuk");
         }
@@ -31,6 +34,9 @@ class AuthController extends Controller
 
     public function indexRegister()
     {
+        if (Auth::check()) {
+            return redirect("dashboard");
+        }
         return view("auth.register");
     }
 
@@ -38,31 +44,28 @@ class AuthController extends Controller
     {
         $req->validate([
             "name" => "required",
-            "username" => "required",
             "email" => "required|email|unique:users",
-            "password" => "required"
+            "password" => "required|min:8",
+            "role" => "required",
         ]);
         $data = $req->all();
         $check = $this->create($data);
-        return redirect('dashboard')->withSuccess("Berhasil Mendaftar");
+        return redirect('dashboard')->with('success', 'Berhasil Mendaftar');
     }
 
     public function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
-            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => $data['role'],
         ]);
     }
 
     public function dashboard()
     {
-        if (Auth::check()) {
-            return view('auth.dashboard');
-        }
-        return redirect('login')->withSuccess('Kamu tidak memiliki akses');
+        return view('pages.dashboard');
     }
 
     public function logout()
