@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
+                            @forelse ($data as $item)
                                 <tr>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">{{ $loop->iteration }}</h6>
@@ -52,7 +52,11 @@
                                         <h6 class="fw-semibold mb-0">{{ $item->tanggal_lahir }}</h6>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center mt-3">Tidak Ada Data</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

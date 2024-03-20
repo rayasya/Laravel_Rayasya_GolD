@@ -23,4 +23,6 @@
     </div>
 
 </div>
+{{-- @dd(session()->get('success')) --}}
+@include('sweetalert::alert')
 @include('components.admin.scripts')

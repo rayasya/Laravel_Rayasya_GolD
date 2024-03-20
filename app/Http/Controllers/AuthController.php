@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function indexLogin()
     {
         if (Auth::check()) {
-            return redirect("dashboard");
+            return redirect("dashboard")->with('warning', 'Anda Sudah Login');
         }
         return view("auth.login");
     }
@@ -28,15 +28,16 @@ class AuthController extends Controller
         ]);
         $credential = $req->only(["email", "password"]);
         if (Auth::attempt($credential)) {
-            return redirect()->intended('dashboard')->withSuccess("Berhasil Masuk");
+            return redirect()->intended('dashboard')->with('success', 'Berhasil Masuk');
         }
-        return redirect('login')->withSuccess("Gagal Masuk");
+
+        return redirect('login')->with('error', 'Gagal masuk');
     }
 
     public function indexRegister()
     {
         if (Auth::check()) {
-            return redirect("dashboard");
+            return redirect("dashboard")->with('warning', 'Anda Sudah Login');
         }
         return view("auth.register");
     }

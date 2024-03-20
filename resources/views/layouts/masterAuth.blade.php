@@ -4,4 +4,5 @@
 @yield('content')
 <!--  Body Wrapper End -->
 
+@include('sweetalert::alert')
 @include('components.auth.scripts')
